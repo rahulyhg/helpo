@@ -7,6 +7,10 @@
  */
 
 class Constant{
-    public static $ROLE_USER = 1;
-    public static $ROLE_POLICE = 2;
+    public static $ROLE_USER = "user";
+    public static $ROLE_POLICE = "police";
+
+    public static $STATUS_NESS = 1; // Not Exists And SMS Sent
+    public static $STATUS_ESS = 2; // Exists And SMS Sent
+
 }

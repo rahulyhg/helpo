@@ -18,7 +18,7 @@ class DB_Function
         $this->response = array();
     }
 
-    function authenticateUser($mobile,$role){
+    function authenticateUser($mobile){
 
         return "DONE";
     }

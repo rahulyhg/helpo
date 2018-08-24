@@ -17,16 +17,35 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
         $db = new DB_Function();
 
 
+        if ($tag==Constant::$ROLE_USER){
+            $result = $db->authenticate("","");
+        }elseif ($tag==Constant::$ROLE_POLICE){
+            $result = $db->authenticatePolice("","");
+        }else{
+            header('X-Error-Message: Incorrect TAG', true, 500);
+            $response["tag"]="Error";
+            $response["success"]=false;
+            $response["message"]="Incorrect TAG";
+            echo json_encode($response,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        }
 
-        $result = $db->authenticate("","");
+        /*$result = $db->authenticate("","");
         $response["tag"]=$tag;
         $response["success"]=true;
         $response["message"]="Success";
-        echo json_encode($response,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        echo json_encode($response,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);*/
 
     }else{
         header('X-Error-Message: Incorrect TAG', true, 500);
+        $response["tag"]="Error";
+        $response["success"]=false;
+        $response["message"]="Incorrect TAG";
+        echo json_encode($response,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 }else{
     header('X-Error-Message: Action does not support GET Method', true, 500);
+    $response["tag"]="Error";
+    $response["success"]=false;
+    $response["message"]="Action does not support GET Method";
+    echo json_encode($response,JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
